@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "852222305838",
+    "project_id": "ajin-7ac22",
+    "storage_bucket": "ajin-7ac22.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:852222305838:android:37f8d2ff6d0520f5d621bf",
+        "android_client_info": {
+          "package_name": "com.example.employees_attendance"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2rnlGUe92_zu-jnlW0ll_48MOS1qJpqE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
