@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:employees_attendance/core/constant.dart';
 import 'package:employees_attendance/services/auth_service.dart';
 import 'package:employees_attendance/view/login/loginPageView.dart';
@@ -24,7 +25,8 @@ class _SplashscreenViewState extends State<SplashscreenView> {
 
   Future<void> _checkSession() async {
     debugPrint('⏳ [SPLASH] Checking user session...');
-    await Future.delayed(const Duration(milliseconds: 1400));
+    // Duration allows Lottie animation to complete smoothly (~2.5s)
+    await Future.delayed(const Duration(milliseconds: 2500));
     if (!mounted) return;
 
     try {
@@ -63,57 +65,57 @@ class _SplashscreenViewState extends State<SplashscreenView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primary,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              width: 72,
-              height: 72,
-              decoration: BoxDecoration(
-                color: Colors.white.withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(
-                  color: Colors.white.withValues(alpha: 0.15),
-                  width: 1,
-                ),
-              ),
-              child: const Icon(
-                Icons.qr_code_scanner_rounded,
-                size: 38,
-                color: Colors.white,
-              ),
+      backgroundColor: Colors.white,
+      body: Stack(
+        fit: StackFit.expand,
+        alignment: Alignment.center,
+        children: [
+          // Full Screen Lottie Splash Animation
+          Positioned.fill(
+            child: Lottie.asset(
+              'asset/lotties/splash_screen.json',
+              fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) {
+                return Lottie.asset(
+                  'asset/lotties/spalsh screen.json',
+                  fit: BoxFit.cover,
+                  errorBuilder: (_, __, ___) => const SizedBox(),
+                );
+              },
             ),
-            const SizedBox(height: 24),
-            const Text(
-              'Attendance',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-                fontWeight: FontWeight.w700,
-                letterSpacing: -0.5,
-              ),
+          ),
+
+          // App Logo Aligned in the Exact Center
+          Center(
+            child: Image.asset(
+              'asset/images/logo.png',
+              width: 120,
+              height: 120,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) {
+                return Image.asset(
+                  'assets/images/logo.png',
+                  width: 120,
+                  height: 120,
+                  fit: BoxFit.contain,
+                  errorBuilder: (_, __, ___) => Container(
+                    width: 72,
+                    height: 72,
+                    decoration: BoxDecoration(
+                      color: AppColors.primary,
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    child: const Icon(
+                      Icons.qr_code_scanner_rounded,
+                      color: Colors.white,
+                      size: 36,
+                    ),
+                  ),
+                );
+              },
             ),
-            const SizedBox(height: 6),
-            const Text(
-              'Smart QR Check-In System',
-              style: TextStyle(
-                color: AppColors.textMuted,
-                fontSize: 14,
-              ),
-            ),
-            const SizedBox(height: 48),
-            const SizedBox(
-              width: 20,
-              height: 20,
-              child: CircularProgressIndicator(
-                strokeWidth: 2,
-                color: Colors.white54,
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -107,17 +107,26 @@ class _LoginPageViewState extends State<LoginPageView> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         // App Brand Icon
-                        Container(
-                          width: 48,
-                          height: 48,
-                          decoration: BoxDecoration(
-                            color: AppColors.primary,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: const Icon(
-                            Icons.qr_code_scanner_rounded,
-                            color: Colors.white,
-                            size: 26,
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: Image.asset(
+                            'asset/images/logo.png',
+                            width: 48,
+                            height: 48,
+                            fit: BoxFit.contain,
+                            errorBuilder: (_, __, ___) => Container(
+                              width: 48,
+                              height: 48,
+                              decoration: BoxDecoration(
+                                color: AppColors.primary,
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: const Icon(
+                                Icons.qr_code_scanner_rounded,
+                                color: Colors.white,
+                                size: 26,
+                              ),
+                            ),
                           ),
                         ),
                         const SizedBox(height: 24),
