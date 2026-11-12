@@ -9,8 +9,8 @@ class ApiService {
   ApiService() {
     _dio = Dio(BaseOptions(
       baseUrl: dummyUserAttendanceBaseUrl,
-      connectTimeout: const Duration(seconds: 6),
-      receiveTimeout: const Duration(seconds: 6),
+      connectTimeout: const Duration(seconds: 2),
+      receiveTimeout: const Duration(seconds: 2),
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
